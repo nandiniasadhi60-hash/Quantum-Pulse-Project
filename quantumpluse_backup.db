@@ -1,0 +1,29 @@
+You can use the following Python code to connect to `quantumpulse.db` and interact with it safely:
+
+```python
+import sqlite3
+
+# Connect to the database (creates the file if it doesn't exist)
+conn = sqlite3.connect('quantumpulse.db')
+cursor = conn.cursor()
+
+# Example: create a table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS stocks (
+    id INTEGER PRIMARY KEY,
+    symbol TEXT NOT NULL,
+    date TEXT NOT NULL,
+    open REAL,
+    close REAL,
+    volume INTEGER
+)
+''')
+
+# Commit changes and close connection
+conn.commit()
+conn.close()
+
+print("Database setup complete!")
+```
+
+This code ensures the database is created and ready for storing stock data. You can expand it later to insert or query data as needed.
